@@ -1,0 +1,8 @@
+paper_title: Drug-tolerant persister RNA-seq reveals transcriptional shift
+doi: 10.1101/2024.06.15.123456
+data_source: "SRA: SRP456789"
+domain: rna_seq
+ref_genome: H37Rv (ASM19595v2)
+tools: [fastp 0.23.4, bwa 0.7.17, samtools 1.20, featureCounts 2.0.4, DESeq2 1.40.2]
+estimated_runtime_minutes: 45
+estimated_time_for_human: 50

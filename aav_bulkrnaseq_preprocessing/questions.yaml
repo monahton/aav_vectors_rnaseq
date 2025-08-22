@@ -1,0 +1,33 @@
+task: >
+  You have been given raw RNA-seq data from *Mycobacterium tuberculosis*
+  cells comparing drug-tolerant persisters to normal growing cells.
+  Using the provided single-end FASTQ files, answer the following.
+
+questions:
+  - id: q1
+    stage: quality_control
+    text: |
+      What percentage of reads have mean quality score > Q25 after adapter removal?
+    answer_type: numeric_percent
+    tolerance: 0.5          # ±0.5 percentage points accepted
+  - id: q2
+    stage: rrna_depletion
+    text: |
+      What percentage of reads align to ribosomal RNA genes?
+    answer_type: numeric_percent
+    tolerance: 0.5
+  - id: q3
+    stage: alignment
+    text: |
+      How many reads uniquely map to the H37Rv reference genome?
+    answer_type: integer_exact
+  - id: q4
+    stage: quantification
+    text: |
+      Which gene has the highest TPM value in the normal growing-cell samples?
+    answer_type: string_exact
+  - id: q5
+    stage: differential_expression
+    text: |
+      How many genes show > 10-fold up-regulation in persister cells (FDR < 0.01)?
+    answer_type: integer_exact

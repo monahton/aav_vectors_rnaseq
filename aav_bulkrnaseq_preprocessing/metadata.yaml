@@ -7,20 +7,6 @@ paper_reference:
   title: "AAV vectors trigger DNA damage response-dependent pro-inflammatory signalling in human iPSC-derived CNS models and mouse brain"
   doi: "doi.org/10.1038/s41467-025-58778-3"
 
-tools:
-  - name: "Salmon"
-    url: "https://salmon.readthedocs.io/"
-  - name: "tximport (Bioconductor)"
-    url: "https://bioconductor.org/packages/tximport/"
-  - name: "DESeq2 (Bioconductor)"
-    url: "https://bioconductor.org/packages/DESeq2/"
-  - name: "SRA Toolkit"
-    url: "https://github.com/ncbi/sra-tools"
-  - name: "seqtk"
-    url: "https://github.com/lh3/seqtk"
-  - name: "fastp (optional)"
-    url: "https://github.com/OpenGene/fastp"
-
 reference:
   organism: "Homo sapiens"
   provider: "GENCODE"

@@ -1,8 +1,34 @@
-paper_title: Drug-tolerant persister RNA-seq reveals transcriptional shift
-doi: 10.1101/2024.06.15.123456
-data_source: "SRA: SRP456789"
-domain: rna_seq
-ref_genome: H37Rv (ASM19595v2)
-tools: [fastp 0.23.4, bwa 0.7.17, samtools 1.20, featureCounts 2.0.4, DESeq2 1.40.2]
-estimated_runtime_minutes: 45
-estimated_time_for_human: 50
+data_source:
+  geo_accession: "GSE253820"
+  description: "RNA-seq of AAV9 treated and Untreated astrocytes."
+  how_to_fetch: "Use SRA Run Selector from the GEO page to export SRR accessions; scripts support SRA Toolkit or direct FASTQ URLs."
+
+paper_reference:
+  title: "AAV vectors trigger DNA damage response-dependent pro-inflammatory signalling in human iPSC-derived CNS models and mouse brain"
+  doi: "doi.org/10.1038/s41467-025-58778-3"
+
+tools:
+  - name: "Salmon"
+    url: "https://salmon.readthedocs.io/"
+  - name: "tximport (Bioconductor)"
+    url: "https://bioconductor.org/packages/tximport/"
+  - name: "DESeq2 (Bioconductor)"
+    url: "https://bioconductor.org/packages/DESeq2/"
+  - name: "SRA Toolkit"
+    url: "https://github.com/ncbi/sra-tools"
+  - name: "seqtk"
+    url: "https://github.com/lh3/seqtk"
+  - name: "fastp (optional)"
+    url: "https://github.com/OpenGene/fastp"
+
+reference:
+  organism: "Homo sapiens"
+  provider: "GENCODE"
+  gencode_release: "v35"
+  genome: "GRCh38"
+  notes: "Scripts download the specified GENCODE release for indexing."
+
+runtime_targets:
+  max_input_size_gb: 10
+  max_runtime_minutes: 60
+  notes: "Use 50,000 pairs per sample for speed and size; adjust if needed."

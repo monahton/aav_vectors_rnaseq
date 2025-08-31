@@ -6,17 +6,17 @@ paper_title: AAV vectors trigger DNA damage response-dependent pro-inflammatory 
 doi: doi.org/10.1038/s41467-025-58778-3  
 data_source: "GEO GSE253820"  
 BioProject PRJNA1300358
-SRA runs SRR27673943 to SRR27673958
+SRA runs SRR27673943 to SRR27673956
 
-This repository provides an end to end workflow for RNA seq analysis of human iPSC derived astrocytes comparing AAV vector transduced cells to control samples. It includes two parts
+This repository provides an end to end workflow for RNA seq analysis of human iPSC derived astrocytes comparing AAV vector transduced cells to control samples. It includes two parts:  
 
-Preprocessing in shell downloads SRA runs, builds sample FASTQs, runs QC and trimming, aligns to GRCh38, and produces gene level counts
+- Preprocessing in shell downloads SRA runs, builds sample FASTQs, runs QC and trimming, aligns to GRCh38, and produces gene level counts
 
-Analysis in R Markdown performs differential expression with DESeq2, PCA and volcano plots, a heatmap, and selected gene expression comparisons
+- Analysis in R Markdown performs differential expression with DESeq2, PCA and volcano plots, a heatmap, and selected gene expression comparisons
 
 ## 1. Data sources
 
-This task is based on publicly available sequencing data from a study of **\[AAV vectors trigger DNA damage response-dependent pro-inflammatory signalling in human iPSC-derived CNS models and mouse brain]**. The dataset includes multiple samples under different conditions (UT, AAV2, AAV9, AAV5) and was originally sequenced using **\[Illumina NovaSeq 2×150]**.
+This task is based on publicly available sequencing data from a study of **\[AAV vectors trigger DNA damage response-dependent pro-inflammatory signalling in human iPSC-derived CNS models and mouse brain]**. The dataset includes multiple samples under different conditions (UT, AAV9) and was originally sequenced using **\[Illumina NovaSeq 2×150]**.
 The subsampled and cleaned FASTQs are stored in `data/` and are used as the inputs for the workflow.
 
 Public GEO GSE253820 and BioProject PRJNA1300358 human iPSC derived astrocytes paired end RNA seq
@@ -25,8 +25,6 @@ Groups and runs used
 
 UT SRR27673943 SRR27673944 SRR27673945 SRR27673949  
 AAV9 SRR27673950 SRR27673951 SRR27673956  
-AAV5 SRR27673952 SRR27673953 SRR27673955  
-AAV2 SRR27673954 SRR27673957 SRR27673958
 
 Reference
 
@@ -46,8 +44,16 @@ Install the tools with conda and fetch FASTQs from SRA using prefetch and faster
 
 ## 3. Pre-processing / subsampling
 
-Subsampling was applied using setqk.
-The dataset includes UT, AAV2, AAV9, AAV5 samples. Quality control is performed with FastQC
+The preprocessing script creates a structured working directory data_pre_processing/ containing:
+
+raw/ # downloaded and processed SRA FASTQs
+fastq/ # concatenated FASTQs (one per sample)
+aligned/ # hisat-aligned BAMs
+counts/ # gene-level count matrix
+qc/ # FastQC output
+hisat2_index/ # reference index for alignment
+
+You can skip raw FASTQ processing and go straight to analysis using data_RNAcounts/final_counts_symbols.tsv.
 
 
 ---

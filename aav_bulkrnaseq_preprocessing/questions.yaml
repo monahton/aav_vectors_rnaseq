@@ -1,33 +1,30 @@
 task: >
-  You have been given raw RNA-seq data from *Mycobacterium tuberculosis*
-  cells comparing drug-tolerant persisters to normal growing cells.
-  Using the provided single-end FASTQ files, answer the following.
+  You have been given bulk RNA-seq expression data (GSE253820) comparing AAV9 treated human astrocytes to untreated controls.    
+  Using the data in the \data folder and provided workflows in the \workflow folder, answer the following questions about the AAV vectors RNAseq study.   
+  You must run the provided workflows. Do not create any synthetic data. Do not translate the provided workflow into a different language.
 
 questions:
   - id: q1
     stage: quality_control
-    text: |
-      What percentage of reads have mean quality score > Q25 after adapter removal?
-    answer_type: numeric_percent
-    tolerance: 0.5          # ±0.5 percentage points accepted
+    text: How many fastq's fail "per base sequence content" per fastqc?
+    answer_type: integer_range
+
   - id: q2
-    stage: rrna_depletion
-    text: |
-      What percentage of reads align to ribosomal RNA genes?
-    answer_type: numeric_percent
-    tolerance: 0.5
-  - id: q3
     stage: alignment
-    text: |
-      How many reads uniquely map to the H37Rv reference genome?
-    answer_type: integer_exact
-  - id: q4
-    stage: quantification
-    text: |
-      Which gene has the highest TPM value in the normal growing-cell samples?
+    text: What is the range of percenatge of aligned reads in the UT samples?
+    answer_type: integer_range
+
+  - id: q3
+    stage: differential_expression
+    text: "How many genes are significantly differentially expressed (FDR < 0.05) in AAV9 vs UT?"
+    answer_type: integer_range
+
+ - id: q4
+    stage: differential_expression
+    text: "Which gene is the most upregulated in AAV9 vs UT by lowest FDR?"
     answer_type: string_exact
+
   - id: q5
     stage: differential_expression
-    text: |
-      How many genes show > 10-fold up-regulation in persister cells (FDR < 0.01)?
-    answer_type: integer_exact
+    text: "Which gene is the most downregulated in AAV9 vs UT by lowest FDR?"
+    answer_type: string_exact
